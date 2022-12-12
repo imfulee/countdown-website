@@ -41,47 +41,63 @@
 
 <main>
   <div class="hero min-h-screen">
-    <div class="text-center">
-      <div class="grid grid-flow-col gap-5 text-center auto-cols-max">
-        <div
-          class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content"
-        >
-          <span class="countdown font-mono text-5xl">
-            <span style="--value:{nowToFinal.days};" />
-          </span>
-          days
+    {#if progressPercentage !== 100}
+      <div class="text-center">
+        <div class="grid grid-flow-col gap-5 text-center auto-cols-max">
+          <div
+            class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content"
+          >
+            <span class="countdown font-mono text-5xl">
+              <span style="--value:{nowToFinal.days};" />
+            </span>
+            days
+          </div>
+          <div
+            class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content"
+          >
+            <span class="countdown font-mono text-5xl">
+              <span style="--value:{nowToFinal.hours};" />
+            </span>
+            hours
+          </div>
+          <div
+            class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content"
+          >
+            <span class="countdown font-mono text-5xl">
+              <span style="--value:{nowToFinal.minutes};" />
+            </span>
+            min
+          </div>
+          <div
+            class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content"
+          >
+            <span class="countdown font-mono text-5xl">
+              <span style="--value:{parseInt(nowToFinal.seconds)};" />
+            </span>
+            sec
+          </div>
         </div>
-        <div
-          class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content"
-        >
-          <span class="countdown font-mono text-5xl">
-            <span style="--value:{nowToFinal.hours};" />
-          </span>
-          hours
-        </div>
-        <div
-          class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content"
-        >
-          <span class="countdown font-mono text-5xl">
-            <span style="--value:{nowToFinal.minutes};" />
-          </span>
-          min
-        </div>
-        <div
-          class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content"
-        >
-          <span class="countdown font-mono text-5xl">
-            <span style="--value:{parseInt(nowToFinal.seconds)};" />
-          </span>
-          sec
-        </div>
+        <progress
+          class="progress progress-success w-100 mt-5"
+          value={progressPercentage.toFixed(2)}
+          max="100"
+        />
       </div>
-      <progress
-        class="progress progress-success w-100 mt-5"
-        value={progressPercentage.toFixed(2)}
-        max="100"
-      />
-    </div>
+    {:else}
+      <!-- The button to open modal -->
+      <label for="my-modal-4" class="btn btn-wide btn-lg">Useless button</label>
+
+      <!-- Put this part before </body> tag -->
+      <input type="checkbox" id="my-modal-4" class="modal-toggle" />
+      <label for="my-modal-4" class="modal cursor-pointer">
+        <label class="modal-box relative" for="">
+          <h3 class="text-lg font-bold">
+            ... but you still clicked it
+          </h3>
+          <img alt="welcome home gif" src="https://media.giphy.com/media/3o7aDgf134NzaaHI8o/giphy.gif" />
+        </label>
+      </label>
+    {/if}
   </div>
 </main>
 
