@@ -5,7 +5,7 @@
   const timezone = "Asia/Taipei";
 
   let now = DateTime.now().setZone(timezone);
-  const final = DateTime.fromISO("2024-12-12T20:05:00+08:00").setZone(timezone);
+  const final = DateTime.fromISO("2022-12-12T20:05:00+08:00").setZone(timezone);
   const start = DateTime.fromISO("2022-09-19T07:00:00+08:00").setZone(timezone);
 
   setInterval(() => (now = DateTime.now().setZone(timezone)), 1000);
@@ -26,15 +26,30 @@
     {#if progressPercentage !== 100}
       <div class="text-center">
         <div class="grid grid-flow-col gap-5 text-center auto-cols-max">
-          <BoxTimeUnit timeValue={nowToFinalObj.years} timeUnit={"years"} />
-          <BoxTimeUnit timeValue={nowToFinalObj.months} timeUnit={"months"} />
-          <BoxTimeUnit timeValue={nowToFinalObj.days} timeUnit={"days"} />
-          <BoxTimeUnit timeValue={nowToFinalObj.hours} timeUnit={"hours"} />
-          <BoxTimeUnit timeValue={nowToFinalObj.minutes} timeUnit={"minutes"} />
-          <BoxTimeUnit
-            timeValue={Math.ceil(nowToFinalObj.seconds)}
-            timeUnit={"seconds"}
-          />
+          {#if nowToFinalObj.years !== 0}
+            <BoxTimeUnit timeValue={nowToFinalObj.years} timeUnit={"years"} />
+          {/if}
+          {#if nowToFinalObj.months !== 0}
+            <BoxTimeUnit timeValue={nowToFinalObj.months} timeUnit={"months"} />
+          {/if}
+          {#if nowToFinalObj.days !== 0}
+            <BoxTimeUnit timeValue={nowToFinalObj.days} timeUnit={"days"} />
+          {/if}
+          {#if nowToFinalObj.hours !== 0}
+            <BoxTimeUnit timeValue={nowToFinalObj.hours} timeUnit={"hours"} />
+          {/if}
+          {#if nowToFinalObj.minutes !== 0}
+            <BoxTimeUnit
+              timeValue={nowToFinalObj.minutes}
+              timeUnit={"minutes"}
+            />
+          {/if}
+          {#if nowToFinalObj.seconds !== 0}
+            <BoxTimeUnit
+              timeValue={Math.ceil(nowToFinalObj.seconds)}
+              timeUnit={"seconds"}
+            />
+          {/if}
         </div>
         <progress
           class="progress progress-success w-100 mt-5"
